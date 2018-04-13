@@ -19,7 +19,7 @@ try {
     $result = curl_exec($ch);
 
     curl_close($ch);
-    //SAMPLE  PHP CODE REQUEST ENDS HERE
+    //SAMPLE  PHP CODE REQUEST ENDS HERE 
 
     echo '<pre>';
     print_r(json_decode($result));
