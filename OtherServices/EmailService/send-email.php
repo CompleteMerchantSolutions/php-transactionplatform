@@ -1,6 +1,6 @@
 <?php
-require_once("Authorize.php");
-require_once("config.php");
+require_once("../../Authorize.php");
+require_once("../../config.php");
 
 use Authorization\Authorize;
 
@@ -9,32 +9,22 @@ try {
     $access = $authorize->refreshJWT($refreshToken);
     $JWT = $access->idToken;
 
-    $data = json_encode(array(
-        'merchantId' => '100039',
-        'tokenex' => array(
-            'token' => '46800bb3-2f85-47b2-9950-cae79534200c',
-        ),
-        'data' => array(
-            'amount' => '10.32',
-        ),
-        'gateway' => array (
-            'name' => 'usaepay'
-        ),
-        'card' => array(
-            'expirationMonth' => '3',
-            'expirationYear' => '20'
-        )
-    ));
+    $data = json_encode([
+        "from" => "wempleo@cmsonline.com",
+        "subject" => "Send email testing",
+        "text" => "Email body here!",
+        "to" => "wempleo@cmsonline.com"
+    ]);
 
     //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $ch = curl_init($apiurl.'pay/v3/process');
+    $ch = curl_init($apiurl.'email/v3');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: $JWT",
-        "Content-Type: application/json",
-        "Content-Length: " . strlen($data)));
+        "Authorization: ".$JWT,
+        "Content-Type: application/json"
+         ));
     $result = curl_exec($ch);
 
     curl_close($ch);

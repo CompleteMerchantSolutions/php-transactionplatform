@@ -1,6 +1,6 @@
 <?php
-require_once("Authorize.php");
-require_once("config.php");
+require_once("../Authorize.php");
+require_once("../config.php");
 
 use Authorization\Authorize;
 
@@ -9,25 +9,22 @@ try {
     $access = $authorize->refreshJWT($refreshToken);
     $JWT = $access->idToken;
 
-    //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $params = json_encode(array(
-        'data' => array(
-            'amount' => '1',
-        ),
-        'merchantId' => '100039',
-        'gateway' => array (
-            'name' => 'usaepay'
-        )
-    ));
+    $data = http_build_query([
+        'limit' => 20,
+        'offset' => 0,
+        'endDate' => '2018-04-10',
+        'startDate' => '2018-03-10'
+    ]);
 
-    $ch = curl_init($apiurl.'pay/v3/token');
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    //SAMPLE  PHP CODE REQUEST STARTS HERE
+    $ch = curl_init($apiurl.'transaction/v3?'.$data);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: $JWT",
-        "Content-Type: application/json",
-        "Content-Length: " . strlen($params)));
+        "Authorization: ".$JWT,
+        "Content-Type: application/json"
+         ));
     $result = curl_exec($ch);
 
     curl_close($ch);
