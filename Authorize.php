@@ -16,24 +16,14 @@ class Authorize
 
     public function login()
     {
-        $data = json_encode(array("username" => $this->username, "password" => $this->password));
-
-        $login_result = $this->curlRequest($this->url, "POST", $data);
-        
-        // let's refresh the token
-        if (!empty($login_result)) {
-            return $this->refreshJWT($login_result->refreshToken);
-        }
-
-        return;
+        return $this->curlRequest($this->url, "POST", json_encode(array(
+            "username" => $this->username,
+            "password" => $this->password)));
     }
 
     public function refreshJWT($refreshToken)
     {
-        $refresh_data = json_encode(array("refreshToken" => $refreshToken));
-        $refresh_result = $this->curlRequest($this->url, "POST", $refresh_data);
-
-        return $refresh_result;
+        return $this->curlRequest($this->url, "POST", json_encode(array("refreshToken" => $refreshToken)));
     }
 
     private function curlRequest($url, $method, $data)
