@@ -1,6 +1,5 @@
 # PHP Code integration to Transaction Platform API Endpoints
 
 ## To use the codes
-1. You need to get first a JWT Token follow this guide (https://developer.emvio.com/#intro)
-2. Copy example.env file and name it .env and input the values of the variables given
-3. Run composer install to use the env variables
+1. Copy example.config.php file and name it config.php and input the values of the variables given leave blank for $JWT and $refreshToken
+2. Run in your browser the login.php file, copy the idToken to $JWT variable and copy the refreshToken data too to $refreshToken config variable

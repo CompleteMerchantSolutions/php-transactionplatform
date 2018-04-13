@@ -28,10 +28,10 @@ class Authorize
         return;
     }
 
-    private function refreshJWT($refreshToken)
+    public function refreshJWT($refreshToken)
     {
         $refresh_data = json_encode(array("refreshToken" => $refreshToken));
-        $refresh_result = $this->curlRequest(getenv('APIURL').'user/v3/refresh', "POST", $refresh_data);
+        $refresh_result = $this->curlRequest($this->url, "POST", $refresh_data);
 
         return $refresh_result;
     }
