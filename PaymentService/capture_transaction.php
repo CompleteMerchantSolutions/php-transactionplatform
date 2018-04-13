@@ -11,13 +11,14 @@ $JWT = $access->idToken;
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => $apiurl."pay/v3/transactions/134305590/capture?merchantId=100039&gateway=usaepay&amount=2.22",
+    CURLOPT_URL => $apiurl."pay/v3/capture",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => "{\n    \"merchantId\": \"100039\",\n    \"gateway\":{\n         \"name\":\"usaepay\",\n         \"refNumber\":\"134305590\"\n    },\n    \"data\": {\n       \"currency\":\"USD\",\n       \"amount\": 5,\n       \"partialAmount\":1\n    }\n}",
     CURLOPT_HTTPHEADER => array(
     "Authorization: ".$JWT
     ),
