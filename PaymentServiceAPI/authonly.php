@@ -2,12 +2,6 @@
 require_once("Authorize.php");
 require_once("config.php");
 
-use Authorization\Authorize;
-
-$authorize = new Authorize($username, $password, $apiurl.'user/v3/refresh');
-$access = $authorize->refreshJWT($refreshToken);
-$JWT = $access->idToken;
-
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
