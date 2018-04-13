@@ -1,28 +1,28 @@
 <?php
-require_once("Authorize.php");
-require_once("config.php");
+require_once("../../Authorize.php");
+require_once("../../config.php");
 
 use Authorization\Authorize;
 
 try {
     $authorize = new Authorize($username, $password, $apiurl.'user/v3/refresh');
     $access = $authorize->refreshJWT($refreshToken);
-    //$JWT = $access->idToken;
+    $JWT = $access->idToken;
 
-    $data = http_build_query(array(
-        'limit' => 20,
-        'offset' => 0,
-        'endDate' => '2018-04-10',
-        'startDate' => '2018-03-10'
-    ));
+    $data = json_encode([
+        "from" => "wempleo@cmsonline.com",
+        "subject" => "Send email testing",
+        "text" => "Email body here!",
+        "to" => "wempleo@cmsonline.com"
+    ]);
 
     //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $ch = curl_init($apiurl.'transaction/v3?'.$data);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $ch = curl_init($apiurl.'email/v3');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: $JWT",
+        "Authorization: ".$JWT,
         "Content-Type: application/json"
          ));
     $result = curl_exec($ch);
