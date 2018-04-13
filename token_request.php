@@ -1,16 +1,13 @@
 <?php
-include "vendor/autoload.php";
 require_once("Authorize.php");
+require_once("config.php");
 
 use Authorization\Authorize;
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
-
 try {
-    $authorize = new Authorize(getenv('USER'), getenv('PASS'), getenv('APIURL').'user/v3/login');
-    $access = $authorize->login();
-    $jwt = $access->idToken;
+    $authorize = new Authorize($username, $password, $apiurl.'user/v3/refresh');
+    $access = $authorize->refreshJWT($refreshToken);
+    $JWT = $access->idToken;
 
     //SAMPLE  PHP CODE REQUEST STARTS HERE
     $params = json_encode(array(
@@ -23,12 +20,12 @@ try {
         )
     ));
 
-    $ch = curl_init(getenv('APIURL').'pay/v3/token');
+    $ch = curl_init($apiurl.'pay/v3/token');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: ".$jwt,
+        "Authorization: $JWT",
         "Content-Type: application/json",
         "Content-Length: " . strlen($params)));
     $result = curl_exec($ch);
