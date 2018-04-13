@@ -10,7 +10,7 @@ try {
     $JWT = $access->idToken;
 
     //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $params = json_encode(array(
+    $data = json_encode(array(
         'data' => array(
             'amount' => '1',
         ),
@@ -22,20 +22,24 @@ try {
 
     $ch = curl_init($apiurl.'pay/v3/token');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Authorization: $JWT",
         "Content-Type: application/json",
-        "Content-Length: " . strlen($params)));
+        "Content-Length: " . strlen($data)));
     $result = curl_exec($ch);
-
+    $error = curl_error($ch);
     curl_close($ch);
-    //SAMPLE  PHP CODE REQUEST ENDS HERE
 
-    echo '<pre>';
-    print_r(json_decode($result));
-    echo '</pre>';
+    if ($error) {
+        echo "CURL Error #: $error";
+    } else {
+        echo '<pre>';
+        print_r(json_decode($result));
+        echo '</pre>';
+    }
+    //SAMPLE  PHP CODE REQUEST ENDS HERE
 } catch (Exception $e) {
     return $e->getMessage();
 }

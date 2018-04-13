@@ -9,25 +9,19 @@ try {
     $access = $authorize->refreshJWT($refreshToken);
     $JWT = $access->idToken;
 
+    //SAMPLE  PHP CODE REQUEST STARTS HERE
     $data = json_encode(array(
         'merchantId' => '100039',
-        'tokenex' => array(
-            'token' => '46800bb3-2f85-47b2-9950-cae79534200c',
-        ),
         'data' => array(
             'amount' => '10.32',
         ),
         'gateway' => array (
-            'name' => 'usaepay'
-        ),
-        'card' => array(
-            'expirationMonth' => '3',
-            'expirationYear' => '20'
+            'name' => 'usaepay',
+            'refNumber' => '134305749'
         )
     ));
 
-    //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $ch = curl_init($apiurl.'pay/v3/process');
+    $ch = curl_init($apiurl.'pay/v3/void');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -36,13 +30,17 @@ try {
         "Content-Type: application/json",
         "Content-Length: " . strlen($data)));
     $result = curl_exec($ch);
-
+    $error = curl_error($ch);
     curl_close($ch);
-    //SAMPLE  PHP CODE REQUEST ENDS HERE
 
-    echo '<pre>';
-    print_r(json_decode($result));
-    echo '</pre>';
+    if ($error) {
+        echo "CURL Error #: $error";
+    } else {
+        echo '<pre>';
+        print_r(json_decode($result));
+        echo '</pre>';
+    }
+    //SAMPLE  PHP CODE REQUEST ENDS HERE
 } catch (Exception $e) {
     return $e->getMessage();
 }
