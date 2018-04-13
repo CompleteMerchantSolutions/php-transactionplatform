@@ -13,13 +13,13 @@ try {
     $jwt = $access->idToken;
 
     //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $params = json_encode(array(
+   /* $params = json_encode(array(
     	'endDate' => '2018-04-12',
         'startDate' => '2018-04-12'
         
-    ));
+    ));*/
 
-    $ch = curl_init(getenv('APIURL').'transaction/v3/transactionsSummary?endDate=2001-01-01&startDate=2001-01-01');
+    $ch = curl_init(getenv('APIURL').'transaction/v3/count?endDate=2018-04-01&startDate=2018-01-01');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
    // curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
