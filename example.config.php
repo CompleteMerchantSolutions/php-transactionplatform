@@ -3,5 +3,5 @@
 $apiurl = '<APIURL>';
 $username = '<USERNAME>';
 $password = '<PASSWORD>';
-$jwt = '<JWT>';
+$JWT = '<JWT>';
 $refreshToken = '<REFRESHTOKEN>';
