@@ -13,15 +13,17 @@ try {
     $data = json_encode(array(
         'merchantId' => '100039',
         'data' => array(
-            'amount' => '10.32',
+            'currency' => 'CAD',
+            'amount' => '13',
+            'partialAmount' => '1',
         ),
         'gateway' => array (
-            'name' => 'usaepay',
-            'refNumber' => '1343061601221'
+            'name' => 'moneris',
+            'refNumber' => '2319-1_11'
         )
     ));
 
-    $ch = curl_init($apiurl.'pay/v3/void');
+    $ch = curl_init($apiurl.'pay/v3/refund');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
