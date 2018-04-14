@@ -1,7 +1,5 @@
 # PHP Code integration to Transaction Platform API Endpoints
 
-## To use the codes
-
 ## Dependencies
 * PHP 5.* up
 
