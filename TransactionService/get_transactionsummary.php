@@ -1,39 +1,34 @@
 <?php
-include "vendor/autoload.php";
-require_once("Authorize.php");
+require_once("../Authorize.php");
+require_once("../config.php");
 
 use Authorization\Authorize;
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
-
 try {
-    $authorize = new Authorize(getenv('USER'), getenv('PASS'), getenv('APIURL').'user/v3/login');
-    $access = $authorize->login();
-    $jwt = $access->idToken;
+    $authorize = new Authorize($username, $password, $apiurl.'user/v3/refresh');
+    $access = $authorize->refreshJWT($refreshToken);
+    $JWT = $access->idToken;
+    
 
-    //SAMPLE  PHP CODE REQUEST STARTS HERE
-    $params = json_encode(array(
-    	'endDate' => '2018-04-12',
-        'startDate' => '2018-04-12'
-        
-    ));
-
-    $ch = curl_init(getenv('APIURL').'transaction/v3/transactionsSummary?endDate=2001-01-01&startDate=2001-01-01');
+    $ch = curl_init($apiurl.'transaction/v3/transactionsSummary?endDate=2001-01-01&startDate=2001-01-01');
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-   // curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    #curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: ".$jwt,
-        "Content-Type: application/json"));
+        "Authorization: $JWT",
+        "Content-Type: application/json"));#,        "Content-Length: " . strlen($data)
     $result = curl_exec($ch);
-
+    $error = curl_error($ch);
     curl_close($ch);
-    //SAMPLE  PHP CODE REQUEST ENDS HERE
 
-    echo '<pre>';
-    print_r(json_decode($result));
-    echo '</pre>';
+    if ($error) {
+        echo "CURL Error #: $error";
+    } else {
+        echo '<pre>';
+        print_r(json_decode($result));
+        echo '</pre>';
+    }
+    //SAMPLE  PHP CODE REQUEST ENDS HERE
 } catch (Exception $e) {
     return $e->getMessage();
 }
