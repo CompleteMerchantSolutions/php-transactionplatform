@@ -44,7 +44,9 @@ try {
 
         file_put_contents('config.php', $newcontent);
 
-        echo 'Login successfully!';
+        echo '<pre>';
+        print_r($result);
+        echo '</pre>';
     }
     //SAMPLE  PHP CODE REQUEST ENDS HERE
 } catch (Exception $e) {
