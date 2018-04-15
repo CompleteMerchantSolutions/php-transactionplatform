@@ -37,10 +37,11 @@
 1. Since our config.php file is now completely setup:
 	> open PaymentServicePlugin\token_request.php
 
-2. Check the following data required to get a one time use token: (Refer here [https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f](https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f))
-	> data.amount (number)
-	> merchantId (string)
-	> gateway.name (string)(comma separated)
+2. Check the following data required to get a one time use token: 
+	* data.amount (number)
+	* merchantId (string)
+	* gateway.name (string)(comma separated)
+	* or refer here for more details [https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f](https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f)
 
 3. Then launch in your browser this file:
 	> open php-transactionflatform/PaymentServicePlugin/token_request.php
