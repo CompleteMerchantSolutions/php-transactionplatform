@@ -41,7 +41,7 @@
 	* data.amount (number)
 	* merchantId (string)
 	* gateway.name (string)(comma separated)
-	* or refer here for more details [https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f](https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f)
+	* or refer here [https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f](https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f) for more details
 
 3. Then launch in your browser this file:
 	> open php-transactionflatform/PaymentServicePlugin/token_request.php
