@@ -9,7 +9,7 @@ $access = $authorize->refreshJWT($refreshToken);
 $curl = curl_init();
 
 //SAMPLE  PHP CODE REQUEST STARTS HERE
-$data = http_build_query(array(
+$data = json_encode(array(
     "transactionIds" => "9"
 ));
 
@@ -21,7 +21,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\n  \"transactionIds\": [9]\n}",
+  CURLOPT_POSTFIELDS => $data,
   CURLOPT_HTTPHEADER => array(
     "Authorization: $JWT",
     "Content-Type: application/json"
