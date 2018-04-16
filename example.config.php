@@ -1,7 +1,7 @@
 <?php
 
 $apiurl = '<APIURL>';
-$merchantID = '<MERCHANTID>';
+$merchantId = '<MERCHANTID>';
 $username = '<USERNAME>';
 $password = '<PASSWORD>';
 $JWT = '<JWT>';
