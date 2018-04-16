@@ -14,7 +14,7 @@ try {
         'data' => array(
             'amount' => '1',
         ),
-        'merchantId' => $merchantId,
+        'merchantId' => "100039",
         'gateway' => array (
             'name' => 'usaepay'
         )
