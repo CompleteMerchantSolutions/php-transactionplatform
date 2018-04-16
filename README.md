@@ -48,13 +48,13 @@
 
 4. This file will print out your one time use token. This token can be used for retrieving the saveCard and makePayment iframes.
 
-### Run Transaction
+### Iframe Forms: Run Transaction
 1. Follow the steps in the [Getting Started](#getting-started) section.
 2. To load the example iframe for running a transaction visit:  
  	> [http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php](http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php)
 3. The iframe is now embedded in this website and can be used to process a transaction.
 
-### Save Card
+### Iframe Forms: Save Card
 1. Follow the steps in the [Getting Started](#plugin-getting-started) section.
 
 2. To load the example iframe for saving a card visit:  
