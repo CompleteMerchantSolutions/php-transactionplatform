@@ -9,7 +9,7 @@ $access = $authorize->refreshJWT($refreshToken);
 $curl = curl_init();
 
 //SAMPLE  PHP CODE REQUEST STARTS HERE
-$data = http_build_query(array(
+$data = json_encode(array(
     "transactionIds" => "1"
 ));
 
