@@ -13,7 +13,7 @@ try {
     $data = json_encode(array(
         'merchantId' => '100039',
         'tokenex' => array(
-            'token' => '46800bb3-2f85-47b2-9950-cae79534200c',
+            'token' => 'e21e9021-c98c-40bd-bf6c-cd23d9cbaaf3',
         ),
         'data' => array(
             'amount' => '10.32',

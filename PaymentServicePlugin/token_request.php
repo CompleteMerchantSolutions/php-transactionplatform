@@ -14,7 +14,7 @@ try {
         'data' => array(
             'amount' => '1',
         ),
-        'merchantId' => '100039',
+        'merchantId' => "100039",
         'gateway' => array (
             'name' => 'usaepay'
         )
@@ -35,9 +35,14 @@ try {
     if ($error) {
         echo "CURL Error #: $error";
     } else {
-        echo '<pre>';
-        print_r(json_decode($result));
-        echo '</pre>';
+
+        echo json_decode($result)->token;
+        
+        //echo '<pre>';
+        //print_r(json_decode($result));
+       //echo '</pre>';
+
+        //return $result;
     }
     //SAMPLE  PHP CODE REQUEST ENDS HERE
 } catch (Exception $e) {

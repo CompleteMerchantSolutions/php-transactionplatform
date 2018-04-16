@@ -25,8 +25,27 @@ try {
     if ($error) {
         echo "CURL Error #: $error";
     } else {
+        $result = json_decode($result);
+
+        // we save the tokens to the config file
+        $content = file_get_contents('config.php');
+
+        $newcontent = preg_replace(
+            '/\$JWT = \'(.*?)\';/',
+            '$JWT = \''.$result->idToken.'\';',
+            $content
+        );
+        
+        $newcontent = preg_replace(
+            '/\$refreshToken = \'(.*?)\';/',
+            '$refreshToken = \''.$result->refreshToken.'\';',
+            $newcontent
+        );
+
+        file_put_contents('config.php', $newcontent);
+
         echo '<pre>';
-        print_r(json_decode($result));
+        print_r($result);
         echo '</pre>';
     }
     //SAMPLE  PHP CODE REQUEST ENDS HERE
