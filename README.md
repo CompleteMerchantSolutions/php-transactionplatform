@@ -50,15 +50,82 @@
 
 ### Iframe Forms: Run Transaction
 1. Follow the steps in the [Getting Started](#getting-started) section.
+
 2. To load the example iframe for running a transaction visit:  
  	> [http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php](http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php)
+
 3. The iframe is now embedded in this website and can be used to process a transaction.
 
 ### Iframe Forms: Save Card
-1. Follow the steps in the [Getting Started](#plugin-getting-started) section.
+1. Follow the steps in the [Getting Started](#getting-started) section.
 
 2. To load the example iframe for saving a card visit:  
  	> [http://localhost/php-transactionplatform/PaymentServicePlugin/save_card.php](http://localhost/php-transactionplatform/PaymentServicePlugin/save_card.php)
 
 3. The iframe is now embedded in this website and can be used to save a card and customer information.
 
+### API: Run Transaction
+1. Follow the steps in the [Getting Started](#getting-started) section.
+
+2. Since our config.php file is now completely setup then open:
+	> PaymentServiceAPI\run_transaction.php
+
+3. Check or review the following data required in the data query parameters: 
+	* merchantId (string)
+	* amount (number) 
+	* gateway (string)
+	* card_expr_month (month's two digits number example for February: 02)
+	* card_expr_year  (year's two digits number example for 2021: 21)
+	* paymethod (string - the tokenex card token)
+	* or refer here [https://docs.transactionplatformstg.com/#3c540f64-76db-7f54-adf1-5abadf43bfc8](https://docs.transactionplatformstg.com/#3c540f64-76db-7f54-adf1-5abadf43bfc8) for complete details
+
+4. Then launch in your browser:
+	> http://localhost/php-transactionplatform/PaymentServiceAPI/run_transaction.php
+
+### API: Refund/Void
+1. Follow the steps in the [Getting Started](#getting-started) section.
+
+2. Since our config.php file is now completely setup then open:
+	> PaymentServiceAPI\void_transaction.php or 
+	> PaymentServiceAPI\refund_transaction.php
+
+3. Update the transaction reference number provided in the url: 
+	* or refer here [https://docs.transactionplatformstg.com/#0526a0af-b129-811d-1994-7c104bbad43e](https://https://docs.transactionplatformstg.com/#0526a0af-b129-811d-1994-7c104bbad43e) for complete details
+
+4. Then launch in your browser:
+	> http://localhost/php-transactionplatform/PaymentServiceAPI/void_transaction.php or
+	> http://localhost/php-transactionplatform/PaymentServiceAPI/refun_transaction.php
+
+### API: Auth Only
+1. Follow the steps in the [Getting Started](#getting-started) section.
+
+2. Since our config.php file is now completely setup then open:
+	> PaymentServiceAPI\authonly.php
+
+3. Check or review the following data required in the data query parameters: 
+	* merchantId (string)
+	* amount (number) 
+	* gateway (string)
+	* card_expr_month (month's two digits number example for February: 02)
+	* card_expr_year  (year's two digits number example for 2021: 21)
+	* paymethod (string - the tokenex card token)
+	* or refer here [https://docs.transactionplatformstg.com/#e240bd5a-aa67-665d-79df-cca5840ffbe3](https://docs.transactionplatformstg.com/#e240bd5a-aa67-665d-79df-cca5840ffbe3) for complete details
+
+4. Then launch in your browser:
+	> http://localhost/php-transactionplatform/PaymentServiceAPI/authonly.php
+
+### API: Capture
+1. Follow the steps in the [Getting Started](#getting-started) section.
+
+2. Since our config.php file is now completely setup then open:
+	> PaymentServiceAPI\capture_transaction.php
+
+3. Update the transaction reference number provided in the url: 
+	* merchantId (string)
+	* amount (number) 
+	* gateway (string)
+	* transactionReferenceNumber (string)
+	* or refer here [https://docs.transactionplatformstg.com/#4ed41eeb-4e9a-2553-b658-9fea126dd865](https://docs.transactionplatformstg.com/#4ed41eeb-4e9a-2553-b658-9fea126dd865) for complete details
+
+4. Then launch in your browser:
+	> http://localhost/php-transactionplatform/PaymentServiceAPI/capture_transaction.php
