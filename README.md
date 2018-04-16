@@ -23,27 +23,42 @@
 	If you have questions about any of these variables please contact us via the [Transaction Platform Support Slack Channel](https://transactionplatform.slack.com).
 
 5. Then launch in your browser:
-	> php-transactionflatform/get_jwt.php
+	> http://localhost/php-transactionflatform/get_jwt.php
 
 	* This script will output the authorization tokens. One of these is idToken or the JWT which will be used in the next step to create a one time use token. And another one is refreshToken which will be use in refreshing JWT.
 	* Note in our example this script will automatically save values to $JWT and $refreshToken variables in the config.php file which will be used in the next steps.
 
 6. Also note that idToken or the JWT expires after an hour and with that we provided a way how we can handle the expiration with the use of refreshToken. Just launch in your browser:
-	> php-transactionflatform/refresh_jwt.php
+	> http://localhost/php-transactionflatform/refresh_jwt.php
 
 	* Note that in our example this script will automatically replace the $JWT and $refreshToken in the config.php file.
 
 ## Use the JWT to Get a One Time Use Token
-1. Since our config.php file is now completely setup:
-	> open PaymentServicePlugin\token_request.php
+1. Since our config.php file is now completely setup then open:
+	> PaymentServicePlugin\token_request.php
 
-2. Check the following data required to get a one time use token: 
+2. Check or review the following data required to get a one time use token: 
 	* data.amount (number)
 	* merchantId (string)
 	* gateway.name (string)(comma separated)
 	* or refer here [https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f](https://docs.transactionplatformstg.com/#653fe486-9ed4-9630-ad14-3b4f0c7b5a0f) for more details
 
 3. Then launch in your browser this file:
-	> open php-transactionflatform/PaymentServicePlugin/token_request.php
+	> http://localhost/php-transactionplatform/PaymentServicePlugin/token_request.php
 
 4. This file will print out your one time use token. This token can be used for retrieving the saveCard and makePayment iframes.
+
+### Run Transaction
+1. Follow the steps in the [Getting Started](#getting-started) section.
+2. To load the example iframe for running a transaction visit:  
+ 	> [http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php](http://localhost/php-transactionplatform/PaymentServicePlugin/run_transaction.php)
+3. The iframe is now embedded in this website and can be used to process a transaction.
+
+### Save Card
+1. Follow the steps in the [Getting Started](#plugin-getting-started) section.
+
+2. To load the example iframe for saving a card visit:  
+ 	> [http://localhost/php-transactionplatform/PaymentServicePlugin/save_card.php](http://localhost/php-transactionplatform/PaymentServicePlugin/save_card.php)
+
+3. The iframe is now embedded in this website and can be used to save a card and customer information.
+
